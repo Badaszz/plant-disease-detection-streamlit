@@ -24,5 +24,5 @@ streamlit run app.py
 
 ## Model Download
 
-Download the trained model here 👉 [Google Drive Link]  
+Download the trained model here 👉 (https://drive.google.com/file/d/1dxyu0JuPKQkoANTov_wt5IGDvcNthGfJ/view?usp=drive_link)  
 After downloading, place the `plant_model.h5` file in the same folder as `app.py`.
