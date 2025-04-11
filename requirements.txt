@@ -8,4 +8,4 @@ matplotlib
 scikit-learn
 keras
 keras.models
-opencv-python
+opencv_python
