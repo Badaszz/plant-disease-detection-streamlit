@@ -8,11 +8,11 @@ import os
 print(os.getcwd())
 
 # Get the path of the current script
-current_dir = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_dir, 'plant_model.h5')
+#current_dir = os.path.dirname(os.path.abspath(__file__))
+#file_path = os.path.join(current_dir, 'plant_model.h5')
 
 # Load the pre-trained modela
-model = load_model(file_path)
+model = load_model('plant_model.h5')
 
 # Define the class names
 class_names = ['Corn-Common_rust', 'Potato-Early_blight', 'Tomato-Bacterial_spot']
