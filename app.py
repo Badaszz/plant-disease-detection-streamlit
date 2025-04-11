@@ -1,7 +1,8 @@
 import numpy as np
 import streamlit as st
-import cv2
+#import cv2
 from keras.models import load_model
+from PIL import Image
 
 import os
 print(os.getcwd())
@@ -29,10 +30,13 @@ submit = st.button("Submit")
 #when the submit button is clicked
 if submit:
     if plant_image is not None:
-        # Read the image file using OpenCV
-        file_bytes = np.asarray(bytearray(plant_image.read()), dtype=np.uint8)
-        image = cv2.imdecode(file_bytes, 1)
-        
+       #read image
+        plant_image = Image.open(plant_image)
+
+        #resize and convert image into a numpy array
+        plant_image = plant_image.resize((32,32))
+        np_array = np.array(traffic_sign_image)
+
         # Display the uploaded image
         st.image(image, caption='Uploaded Image', channels='BGR')
         st.write("Classifying...")
