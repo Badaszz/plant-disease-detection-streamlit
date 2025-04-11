@@ -30,26 +30,29 @@ submit = st.button("Submit")
 #when the submit button is clicked
 if submit:
     if plant_image is not None:
-       #read image
-        plant_image = Image.open(plant_image)
-
-        #resize and convert image into a numpy array
-        plant_image = plant_image.resize((32,32))
-        np_array = np.array(traffic_sign_image)
+        # Read the image file using PIL
+        image = Image.open(plant_image)
 
         # Display the uploaded image
-        st.image(image, caption='Uploaded Image', channels='BGR')
+        st.image(image, caption='Uploaded Image')
         st.write("Classifying...")
-        
+
         # Preprocess the image for the model
-        image = cv2.resize(image, (256, 256))  # Resize to the input size of the model
-        
-        #Convert the image to a 4D tensor
-        image.shape = (1, 256, 256, 3)  
-        
-        #Make prediction
+        image = image.resize((256, 256))  # Resize to the input size of the model
+
+        # Convert the image to a NumPy array (RGB format)
+        image = np.array(image)
+
+        # Convert to a 4D tensor (batch size, height, width, channels)
+        image = np.expand_dims(image, axis=0)  # Add batch dimension
+
+        # Normalize the image if required by the model
+        image = image / 255.0  # If your model was trained with normalized images
+
+        # Make prediction
         prediction = model.predict(image)
         result = class_names[np.argmax(prediction)]
-        
+
+        # Display the result
         st.title(f"This is the {result.split('-')[0]} plant and it is affected by {result.split('-')[1]} disease.")
-        st.balloons()    
+        st.balloons()
